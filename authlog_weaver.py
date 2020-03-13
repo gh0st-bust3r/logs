@@ -2,12 +2,13 @@
 import pandas as pd
 import re
 
-
+#regex to pull the fields I want
 rex = r'(?P<TIME>[A-Z][a-z]{2} [ \d]\d \d\d:\d\d:\d\d) (?P<HOSTNAME>.+?)\s(?P<DAEMON>.+?): (?P<MESSAGE>.+$)'
 r = re.compile(rex)
 
+#this seemed to be the fastest way to read the it
 extracted = []
-with open('super_auth.log', 'r') as f:
+with open('auth.log', 'r') as f:
     for line in f.readlines():
         extracted.append(r.search(line).groups())
 
